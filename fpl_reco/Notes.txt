@@ -1,0 +1,13 @@
+Search
+Takes string and returns list of player names that start with the string. Prefix.
+
+Delete
+Takes the name, searches by the name, and then deletes all rows with that name.
+
+fullTable, getBest, getBetterThanAvg
+None of these take any input parameters
+
+Updates - take two attributes. 1 - Name. 2 - New value for that Statistic.
+Cost, pointspergame, selectedbypercent - Float
+Pos, Team, Status - string
+minutes, total points, bonus - Integer
