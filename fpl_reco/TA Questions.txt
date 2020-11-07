@@ -1,0 +1,9 @@
+TA Questions
+
+FrontEnd Setup & Standards
+Backend Setup
+CPanel Setup
+Neo4j Setup
+Running of Queries - Stored Procedures Vs Queries
+Deviation from Schema
+

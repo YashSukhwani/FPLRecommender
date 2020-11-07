@@ -89,7 +89,7 @@ function App() {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
-          method: 'post',
+          method: 'delete',
           url: '',
           headers: {}, 
           data: {
@@ -111,7 +111,7 @@ function App() {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
-          method: 'post',
+          method: 'update',
           url: '',
           headers: {}, 
           data: {
@@ -133,7 +133,7 @@ function App() {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
-          method: 'post',
+          method: 'get',
           url: '',
           headers: {}, 
           data: {
