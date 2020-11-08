@@ -67,17 +67,17 @@ function App() {
         console.log(valueRef1.current.value);
         axios({
           method: 'post',
-          url: '',
+          url: 'http://fplrecommender.web.illinois.edu/insert',
           headers: {}, 
           data: {
              playerName: valueRef1.current.value, 
              teamName: valueRef2.current.value,
-             stat1: valueRef3.current.value,
-             stat1Val: valueRef4.current.value,
-             stat2: valueRef5.current.value,
-             stat2Val: valueRef6.current.value,
-             stat3: valueRef7.current.value,
-             stat3Val: valueRef8.current.value
+             position: valueRef3.current.value,
+            //  stat1Val: valueRef4.current.value,
+            //  stat2: valueRef5.current.value,
+            //  stat2Val: valueRef6.current.value,
+            //  stat3: valueRef7.current.value,
+            //  stat3Val: valueRef8.current.value
           }
         }).catch(function (error) {
           console.log(error);
@@ -85,22 +85,57 @@ function App() {
         }}>
         Insert Player</Button>
 
+        <Button variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'get',
+          url: 'http://fplrecommender.web.illinois.edu/fulltable',
+          headers: {}, 
+          data: {
+          }
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>FullTable</Button>
+
+<Button variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'get',
+          url: 'http://fplrecommender.web.illinois.edu/getBest',
+          headers: {}, 
+          data: {
+          }
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>getBest</Button>
+
+<Button variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'get',
+          url: 'http://fplrecommender.web.illinois.edu/getBetterthanAvg',
+          headers: {}, 
+          data: {
+          }
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>getBetterthanAvg</Button>
+
       <Button variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
           method: 'delete',
-          url: '',
+          url: 'http://fplrecommender.web.illinois.edu/delete',
           headers: {}, 
           data: {
              playerName: valueRef1.current.value, 
-             teamName: valueRef2.current.value,
-             stat1: valueRef3.current.value,
-             stat1Val: valueRef4.current.value,
-             stat2: valueRef5.current.value,
-             stat2Val: valueRef6.current.value,
-             stat3: valueRef7.current.value,
-             stat3Val: valueRef8.current.value
           }
         }).catch(function (error) {
           console.log(error);
@@ -111,23 +146,17 @@ function App() {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
-          method: 'update',
-          url: '',
+          method: 'put',
+          url: 'http://fplrecommender.web.illinois.edu/updateTeam',
           headers: {}, 
           data: {
              playerName: valueRef1.current.value, 
-             teamName: valueRef2.current.value,
-             stat1: valueRef3.current.value,
-             stat1Val: valueRef4.current.value,
-             stat2: valueRef5.current.value,
-             stat2Val: valueRef6.current.value,
-             stat3: valueRef7.current.value,
-             stat3Val: valueRef8.current.value
+             statValue: valueRef2.current.value,
           }
         }).catch(function (error) {
           console.log(error);
       });
-        }}>Update Player</Button>
+        }}>Update Team</Button>
 
       <Button variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
@@ -165,13 +194,13 @@ function App() {
           label="Player Team"
           inputRef={valueRef2}
         />
-      </div>
-      <div>
         <TextField
-          id="stat-name"
-          label="Statistic"
+          id="position"
+          label="Position"
           inputRef={valueRef3}
         />
+      </div>
+      <div>
         <TextField
           id="stat-number"
           label="Number"
