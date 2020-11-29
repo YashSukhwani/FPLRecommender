@@ -112,6 +112,9 @@ class DecisionTree():
     
 
     def predict(self, x):
+    	print('xis: ')
+    	for xi in x:
+    		print(xi)
         return np.array([self.predict_row(xi) for xi in x])
 
     def predict_row(self, xi):
