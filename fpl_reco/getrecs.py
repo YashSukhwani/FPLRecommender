@@ -53,7 +53,7 @@ class RandomForest():
     def predict(self, x):
         return np.mean([t.predict(x) for t in self.trees], axis=0)
 
-def std_agg(cnt, s1, s2): return math.sqrt((s2/cnt) - (s1/cnt)**2)
+def std_agg(cnt, s1, s2): return math.sqrt(abs((s2/cnt) - (s1/cnt)**2))
 
 class DecisionTree():
     def __init__(self, x, y, n_features, f_idxs,idxs,depth=10, min_leaf=5):
