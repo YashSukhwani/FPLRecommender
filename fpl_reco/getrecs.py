@@ -4,6 +4,7 @@ import mysql.connector
 from mysql.connector import Error
 import numpy as np
 import pandas as pd
+import math
 
 
 def PEP3333(environ, start_response):
@@ -119,7 +120,6 @@ class DecisionTree():
 def main():
 	connection = connectDB()
 	tuples = runCommand(connection)
-	print(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float))
 	rfregressor = RandomForest(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float), np.array([item[-1] for item in tuples]).astype(float), 15, 'sqrt', 592)
 	pred_scores = []
 	for i in tuples:
