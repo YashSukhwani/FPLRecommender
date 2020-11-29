@@ -20,6 +20,8 @@ def connectDB():
 	                                         password='Australia101')
 		while not connection.is_connected():
 			continue
+		if connection.is_connected():
+			print('connected')
 		return connection
 	except Error:
 		print('Error while connecting: ', Error)
