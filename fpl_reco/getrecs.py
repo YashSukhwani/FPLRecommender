@@ -51,6 +51,8 @@ class RandomForest():
                     idxs=np.array(range(self.sample_sz)),depth = self.depth, min_leaf=self.min_leaf)
         
     def predict(self, x):
+        print('x: ')
+        print(x)
         return np.mean([t.predict(x) for t in self.trees], axis=0)
 
 def std_agg(cnt, s1, s2): return math.sqrt(abs((s2/cnt) - (s1/cnt)**2))
