@@ -24,7 +24,7 @@ def connectDB():
 			print('connected')
 		return connection
 	except Error:
-		print('Error while connecting: ', Error)
+		print('Error while connecting: ', Error.msg)
 
 def runCommand(connection):
 	cursor = connection.cursor()
