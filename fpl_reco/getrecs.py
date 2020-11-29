@@ -128,7 +128,7 @@ def main():
 	connection = connectDB()
 	tuples = runCommand(connection)
 	rfregressor = RandomForest(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float), np.array([item[-1] for item in tuples]).astype(float), 15, 'sqrt', 592)
-	pred_scores = rfregressor.predict(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float))
+	pred_scores = rfregressor.predict(np.array([item[3:18] for item in tuples]).astype(float))
 	scores_argsort = np.flip(np.argsort(pred_scores))
 	recplayers = []
 	for i in scores_argsort:
