@@ -120,7 +120,7 @@ def main():
 	connection = connectDB()
 	tuples = runCommand(connection)
 	print(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float))
-	rfregressor = RandomForest(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float), np.array([item[-1] for item in tuples]), 15, 'sqrt', 592)
+	rfregressor = RandomForest(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float), np.array([item[-1] for item in tuples]).astype(float), 15, 'sqrt', 592)
 	pred_scores = []
 	for i in tuples:
 		pred_scores += [rfregressor.predict(np.array(i[3:18]))]
