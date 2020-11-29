@@ -39,8 +39,7 @@ class RandomForest():
         elif n_features == 'log2':
             self.n_features = int(np.log2(x.shape[1]))
         else:
-            self.n_features = n_features
-        print(self.n_features, "sha: ",x.shape[1])    
+            self.n_features = n_features 
         self.x, self.y, self.sample_sz, self.depth, self.min_leaf  = x, y, sample_sz, depth, min_leaf
         self.trees = [self.create_tree() for i in range(n_trees)]
 
@@ -51,8 +50,6 @@ class RandomForest():
                     idxs=np.array(range(self.sample_sz)),depth = self.depth, min_leaf=self.min_leaf)
         
     def predict(self, x):
-        print('x: ')
-        print(x)
         return np.mean([t.predict(x) for t in self.trees], axis=0)
 
 def std_agg(cnt, s1, s2): return math.sqrt(abs((s2/cnt) - (s1/cnt)**2))
@@ -61,8 +58,6 @@ class DecisionTree():
     def __init__(self, x, y, n_features, f_idxs,idxs,depth=10, min_leaf=5):
         self.x, self.y, self.idxs, self.min_leaf, self.f_idxs = x, y, idxs, min_leaf, f_idxs
         self.depth = depth
-        print(f_idxs)
-#         print(self.depth)
         self.n_features = n_features
         self.n, self.c = len(idxs), x.shape[1]
         self.val = np.mean(y[idxs])
@@ -112,15 +107,10 @@ class DecisionTree():
     
 
     def predict(self, x):
-        print("xis: ")
-        for xi in x:
-            print(xi)
         return np.array([self.predict_row(xi) for xi in x])
 
     def predict_row(self, xi):
         if self.is_leaf: return self.val
-        print('xi: ')
-        print(xi)
         t = self.lhs if xi[self.var_idx]<=self.split else self.rhs
         return t.predict_row(xi)
 
@@ -130,10 +120,11 @@ def main():
 	rfregressor = RandomForest(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float), np.array([item[-1] for item in tuples]).astype(float), 15, 'sqrt', 592)
 	pred_scores = rfregressor.predict(np.array([item[3:18] for item in tuples]).astype(float))
 	scores_argsort = np.flip(np.argsort(pred_scores))
-	recplayers = []
+	players = open("players.txt", 'w')
 	for i in scores_argsort:
-		recplayers += [tuples[i][1] + ' ' + tuples[i][2]]
-	print(recplayers)
+		players.write(tuples[i][1] + ' ' + tuples[i][2])
+	players.close()
+	
 
 sys.path.insert(0, os.path.dirname(__file__))
 if __name__ == '__main__':
