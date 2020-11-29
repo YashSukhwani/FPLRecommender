@@ -16,7 +16,7 @@ def connectDB():
 	try:
 		connection = mysql.connector.connect(host='localhost',
 	                                         database='fplrecommender_MainDataDB',
-	                                         user='commonUser',
+	                                         user='fplrecommender_commonUser',
 	                                         password='Australia101')
 		while not connection.is_connected():
 			continue
@@ -24,7 +24,7 @@ def connectDB():
 			print('connected')
 		return connection
 	except Error:
-		print('Error while connecting: ', Error.msg)
+		print('Error while connecting: ' + str(Error))
 
 def runCommand(connection):
 	cursor = connection.cursor()
