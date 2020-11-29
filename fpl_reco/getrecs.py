@@ -5,7 +5,7 @@ from mysql.connector import Error
 
 
 
-def PEP-3333(environ, start_response):
+def PEP3333(environ, start_response):
     start_response('200 OK', [('Content-Type', 'text/plain')])
     message = 'It works!\n'
     version = 'Python v' + sys.version.split()[0] + '\n'
