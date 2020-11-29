@@ -114,6 +114,7 @@ class DecisionTree():
 
     def predict_row(self, xi):
         if self.is_leaf: return self.val
+        print(xi)
         t = self.lhs if xi[self.var_idx]<=self.split else self.rhs
         return t.predict_row(xi)
 
