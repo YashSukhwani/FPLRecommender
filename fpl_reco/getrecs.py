@@ -121,7 +121,6 @@ class DecisionTree():
 def main():
 	connection = connectDB()
 	tuples = runCommand(connection)
-	print(pd.DataFrame([item[3:18] for item in tuples]))
 	rfregressor = RandomForest(pd.DataFrame([item[3:18] for item in tuples], dtype=float), np.array([item[-1] for item in tuples]), 15, 'sqrt', 592)
 	pred_scores = []
 	for i in tuples:
