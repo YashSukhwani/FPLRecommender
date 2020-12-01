@@ -85,6 +85,22 @@ function App() {
         }}>
         Insert Player</Button>
 
+      <Button variant="contained" color="secondary" onClick={() => {
+        var exec = require('child_process').exec, child;
+        child = exec('source /home/fplrecommender/virtualenv/repositories/FPLRecommender/fpl_reco/3.8/bin/activate && python3 /home/fplrecommender/repositories/FPLRecommender/fpl_reco/getrecs.py',
+          function (error, stdout, stderr) {
+            console.log('stdout: ' + stdout);
+            console.log('stderr: ' + stderr);
+            if (error !== null) {
+              console.log('exec error: ' + error);
+            }
+          });
+        child();
+        var fs = require('fs');
+        fs.readFile("/home/fplrecommender/repositories/FPLRecommender/fpl_reco/players.txt", 'utf8', function(err, data) { console.log(data); })
+        }}>
+        Get Recommendations</Button>
+
       <Button variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
