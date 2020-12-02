@@ -122,7 +122,7 @@ def main():
 	scores_argsort = np.flip(np.argsort(pred_scores))
 	players = open("players.txt", 'w', newline='\n')
 	for i in scores_argsort:
-		players.write(tuples[i][1] + ' ' + tuples[i][2])
+		players.write(tuples[i][1] + ' ' + tuples[i][2] + ',' + tuples[i][-4] + ',' + tuples[i][-3] + ',' + tuples[i][-2] + ',' + tuples[i][-1])
 		players.write('\n')
 	players.close()
 	
