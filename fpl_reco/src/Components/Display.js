@@ -82,7 +82,7 @@ function Display(props) {
                 </table>
             </div>
         );
-    } else {
+    } else if (props.full == 'Recos') {
         return (            
             <div >
                 <table style={leStyle}>
@@ -101,6 +101,27 @@ function Display(props) {
                     <td style={leStyle}>{item.team}</td>
                     <td style={leStyle}>{item.status}</td>
                     <td style={leStyle}>{item.cost}</td>
+                    </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
+            );
+    } else {
+        return (            
+            <div >
+                <table style={leStyle}>
+                <thead>
+                    <th style={leStyle}>Article Title</th>
+                    <th style={leStyle}>Link</th>
+                    <th style={leStyle}>Description</th>
+                    </thead>
+                    <tbody>
+                    {props.array.map(item => (
+                    <tr >
+                    <td style={leStyle}>{item.title}</td>
+                    <td style={leStyle}>{item.link}</td>
+                    <td style={leStyle}>{item.description}</td>
                     </tr>
                     ))}
                     </tbody>

@@ -9,6 +9,10 @@ import Display from './Display';
 
 function All() {
 
+  const startStyle = {
+    opacity: '0%'
+};
+
   const placeholderData = [{
     "name": "Martínez",
     "points_per_game": 6.8,
@@ -62,10 +66,6 @@ const theStyle = {
   const valueRef2 = useRef('');
   const valueRef3 = useRef('');
   const valueRef4 = useRef('');
-  const valueRef5 = useRef('');
-  const valueRef6 = useRef('');
-  const valueRef7 = useRef('');  
-  const valueRef8 = useRef('');
 
   const player1 = useRef('');
   const player2 = useRef('');
@@ -93,7 +93,7 @@ const theStyle = {
     </Typography>
     <div>
     <Typography style={beStyle} variant="h5" component="h6">
-      Team Name or Player Name to be used in Search and Delete. 
+      Player Name to be used in Search and Delete. 
     </Typography>
     </div>
     <div>
@@ -103,10 +103,27 @@ const theStyle = {
     </div>
     <div>
     <Typography style={beStyle} variant="h5" component="h6">
-      Must provide at least one statistic in these two functions.
+      Updates to fields other than Position & Team utilize the Update Value textbox.
+    </Typography>
+    <Typography style={beStyle} variant="h5" component="h6">
+      All team names and positions must be between 1-3 characters long.
     </Typography>
     </div>
-    <div>
+    <div style={theStyle}>
+    <Typography style={inStyle} variant="h4" component="h5">
+      How it Works
+    </Typography>
+    <Typography style={beStyle} variant="h5" component="h6">
+      By submitting your team, you can receieve personalized recommendations about changes to your team that will maximize your FPL points.
+    </Typography>
+    <Typography style={beStyle} variant="h5" component="h6">
+      We form these recommendations specifically for your specific team based on our point maximization alogorithm. 
+    </Typography>
+    <Typography style={beStyle} variant="h5" component="h6">
+      You must submit your team before gathering news about it.
+    </Typography>
+    </div>
+    <div style={theStyle}>
       <Button style={myStyle} variant="contained" color="secondary" onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
@@ -132,6 +149,46 @@ const theStyle = {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
+          method: 'post',
+          url: 'http://fplrecommender.web.illinois.edu/search',
+          headers: {},
+          data: {
+            playerName: valueRef1.current.value
+          }
+        })
+        .then((res) => {
+          console.log(res);
+          setArr(res.data.Result);
+          setFull('Search');
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Search Player</Button>
+
+<Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'delete',
+          url: 'http://fplrecommender.web.illinois.edu/delete',
+          headers: {}, 
+          data: {
+             playerName: valueRef1.current.value, 
+          }
+        }).then((res) => {
+          console.log(res);
+          window.alert('Player Deleted!')
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Delete Player</Button>
+    </div>
+
+        <div>
+        <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
           method: 'get',
           url: 'http://fplrecommender.web.illinois.edu/fulltable',
           headers: {}, 
@@ -144,7 +201,7 @@ const theStyle = {
         }).catch(function (error) {
           console.log(error);
       });
-        }}>Full Table</Button>
+        }}>Get Full Table</Button>
 
 <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
@@ -184,43 +241,6 @@ const theStyle = {
       });
         }}>get Better than Avg</Button>
 
-      <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
-        console.log('Hi');
-        console.log(valueRef1.current.value);
-        axios({
-          method: 'delete',
-          url: 'http://fplrecommender.web.illinois.edu/delete',
-          headers: {}, 
-          data: {
-             playerName: valueRef1.current.value, 
-          }
-        }).then((res) => {
-          console.log(res);
-          window.alert('Player Deleted!')
-        }).catch(function (error) {
-          console.log(error);
-      });
-        }}>Delete Player</Button>
-
-      <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
-        console.log('Hi');
-        console.log(valueRef1.current.value);
-        axios({
-          method: 'put',
-          url: 'http://fplrecommender.web.illinois.edu/updateTeam',
-          headers: {}, 
-          data: {
-             playerName: valueRef1.current.value, 
-             statValue: valueRef2.current.value,
-          }
-        }).then((res) => {
-          console.log(res);
-          window.alert('Team Updated!')
-        }).catch(function (error) {
-          console.log(error);
-      });
-        }}>Update Team</Button>
-
 <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
     axios({
       method: 'get',
@@ -234,31 +254,11 @@ const theStyle = {
       console.log(error);
   });
     }}>Get Recommendations</Button>
+        </div>
 
-      <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
-        console.log('Hi');
-        console.log(valueRef1.current.value);
-        axios({
-          method: 'post',
-          url: 'http://fplrecommender.web.illinois.edu/search',
-          headers: {},
-          data: {
-            playerName: valueRef1.current.value
-          }
-        })
-        .then((res) => {
-          console.log(res);
-          setArr(res.data.Result);
-          setFull('Search');
-        }).catch(function (error) {
-          console.log(error);
-      });
-        }}>Search Player</Button>
-    </div>
     <div>
-
     <form noValidate autoComplete="off">
-      <div>
+      <div style={theStyle}>
       <TextField style={myStyle}
           id="player-name"
           label="Player Name"
@@ -274,42 +274,188 @@ const theStyle = {
           label="Position"
           inputRef={valueRef3}
         />
-      </div>
-      <div>
-        <TextField style={myStyle}
+                <TextField style={myStyle}
           id="stat-number"
-          label="Number"
+          label="Update Value"
           type="number"
           inputRef={valueRef4}
         />
       </div>
-      <div>
-      <TextField style={myStyle}
-          id="stat-name2"
-          label="Statistic 2"
-          inputRef={valueRef5}
-        />
-        <TextField style={myStyle}
-          id="stat-number2"
-          label="Number"
-          type="number"
-          inputRef={valueRef6}
-        />
+      <div style={theStyle}>
+      <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'put',
+          url: 'http://fplrecommender.web.illinois.edu/updateCost',
+          headers: {}, 
+          data: {
+            playerName: valueRef1.current.value, 
+            statValue: valueRef4.current.value
+          }
+        }).then((res) => {
+          console.log(res);
+          window.alert('Updated cost for ' + valueRef1.current.value + ' to ' + valueRef4.current.value);
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Update Cost</Button>
+
+<Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'put',
+          url: 'http://fplrecommender.web.illinois.edu/updateSelectedByPercent',
+          headers: {}, 
+          data: {
+            playerName: valueRef1.current.value, 
+            statValue: valueRef4.current.value
+          }
+        }).then((res) => {
+          console.log(res);
+          window.alert('Updated Selected by Percent for ' + valueRef1.current.value + ' to ' + valueRef4.current.value);
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Update Selected By Percent</Button>
+
+<Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'put',
+          url: 'http://fplrecommender.web.illinois.edu/pointsPerGame',
+          headers: {}, 
+          data: {
+            playerName: valueRef1.current.value, 
+            statValue: valueRef4.current.value
+          }
+        }).then((res) => {
+          console.log(res);
+          window.alert('Updated points per game for ' + valueRef1.current.value + ' to ' + valueRef4.current.value);
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Update Points Per Game</Button>
+        
+        <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'put',
+          url: 'http://fplrecommender.web.illinois.edu/updateStatus',
+          headers: {}, 
+          data: {
+            playerName: valueRef1.current.value, 
+            statValue: valueRef4.current.value
+          }
+        }).then((res) => {
+          console.log(res);
+          window.alert('Updated status for ' + valueRef1.current.value + ' to ' + valueRef4.current.value);
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Update Status</Button>
       </div>
       <div>
-      <TextField style={myStyle}
-          id="stat-name3"
-          label="Statistic 3"
-          inputRef={valueRef7}
-        />
-        <TextField style={myStyle}
-          id="stat-number3"
-          label="Number"
-          type="number"
-          inputRef={valueRef8}
-        />
+      <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'put',
+          url: 'http://fplrecommender.web.illinois.edu/updatePosition',
+          headers: {}, 
+          data: {
+            playerName: valueRef1.current.value, 
+            statValue: valueRef3.current.value
+          }
+        }).then((res) => {
+          console.log(res);
+          window.alert('Updated position for ' + valueRef1.current.value + ' to ' + valueRef3.current.value);
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Update Position</Button>
+
+<Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'put',
+          url: 'http://fplrecommender.web.illinois.edu/updateTeam',
+          headers: {}, 
+          data: {
+            playerName: valueRef1.current.value, 
+            statValue: valueRef2.current.value
+          }
+        }).then((res) => {
+          console.log(res);
+          window.alert('Updated team for ' + valueRef1.current.value + ' to ' + valueRef2.current.value);
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Update Team</Button>
+
+      <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'put',
+          url: 'http://fplrecommender.web.illinois.edu/updateMinutes',
+          headers: {}, 
+          data: {
+            playerName: valueRef1.current.value, 
+            statValue: valueRef4.current.value
+          }
+        }).then((res) => {
+          console.log(res);
+          window.alert('Updated minutes for ' + valueRef1.current.value + ' to ' + valueRef4.current.value);
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Update Minutes</Button>
+
+<Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'put',
+          url: 'http://fplrecommender.web.illinois.edu/updateBonus',
+          headers: {}, 
+          data: {
+            playerName: valueRef1.current.value, 
+            statValue: valueRef4.current.value
+          }
+        }).then((res) => {
+          console.log(res);
+          window.alert('Updated bonus for ' + valueRef1.current.value + ' to ' + valueRef4.current.value);
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Update Bonus</Button>
+
+<Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+        console.log('Hi');
+        console.log(valueRef1.current.value);
+        axios({
+          method: 'put',
+          url: 'http://fplrecommender.web.illinois.edu/updateTotalPoints',
+          headers: {}, 
+          data: {
+            playerName: valueRef1.current.value, 
+            statValue: valueRef4.current.value
+          }
+        }).then((res) => {
+          console.log(res);
+          window.alert('Updated total points for ' + valueRef1.current.value + ' to ' + valueRef4.current.value);
+        }).catch(function (error) {
+          console.log(error);
+      });
+        }}>Update Total Points</Button>
       </div>
-      <div>
+
+      <div style={theStyle}>
       <Typography style={textStyle} variant="h1" component="h2">
       Enter Your Team Below
     </Typography>
@@ -378,7 +524,7 @@ const theStyle = {
         <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
     axios({
       method: 'post',
-      url: 'http://fplrecommender.web.illinois.edu/playerTeam', // Edit this URL for Shrikar
+      url: 'http://fplrecommender.web.illinois.edu/playerTeam', // Edit this URL for Rushill
       headers: {},
       data: {
         player1: player1.current.value,
@@ -397,10 +543,30 @@ const theStyle = {
         player14: player14.current.value,
         player15: player15.current.value,
       }
+    }).then((res) => {
+      console.log(res);
+      window.alert('Gathering recommendations for your submitted FPL team!');
     }).catch(function (error) {
       console.log(error);
   });
     }}>Submit Team</Button>
+
+<Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+    axios({
+      method: 'get',
+      url: 'http://fplrecommender.web.illinois.edu/news', // This is the url Rushill provided
+      headers: {},
+      data: {
+      }
+    }).then((res) => {
+      console.log(res);
+      window.alert('Gathering recent news pertaining to your team!');
+      setArr(res.data.Result);
+      setFull('News');
+    }).catch(function (error) {
+      console.log(error);
+  });
+    }}>Gather Team News</Button>
         </div>
     </form>
 
