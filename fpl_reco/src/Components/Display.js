@@ -28,7 +28,7 @@ function Display(props) {
                 </table>
             </div>
         );
-    } else {
+    } else if (props.full == 'True') {
         return (            
         <div >
             <table style={leStyle}>
@@ -64,6 +64,23 @@ function Display(props) {
                 </tbody>
             </table>
         </div>
+        );
+    } else { // else if (props.full == 'Search')
+        return (
+            <div >
+                <table style={leStyle}>
+                <thead>
+                    <th style={leStyle}>Player Name</th>
+                    </thead>
+                    <tbody>
+                    {props.array.map(item => (
+                    <tr >
+                    <td style={leStyle}>{item.name}</td>
+                    </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         );
     }
 

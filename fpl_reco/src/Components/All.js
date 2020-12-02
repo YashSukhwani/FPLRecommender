@@ -237,23 +237,17 @@ const theStyle = {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
-          method: 'get',
+          method: 'post',
           url: 'http://fplrecommender.web.illinois.edu/search',
           headers: {},
-          // withCredentials: true,
-          // crossdomain: true,
           data: {
-             playerName: valueRef1.current.value
-            //  teamName: valueRef2.current.value,
-            //  stat1: valueRef3.current.value,
-            //  stat1Val: valueRef4.current.value,
-            //  stat2: valueRef5.current.value,
-            //  stat2Val: valueRef6.current.value,
-            //  stat3: valueRef7.current.value,
-            //  stat3Val: valueRef8.current.value
+            playerName: valueRef1.current.value
           }
-        }).then((res) => {
+        })
+        .then((res) => {
           console.log(res);
+          setArr(res.data.Result);
+          setFull('Search');
         }).catch(function (error) {
           console.log(error);
       });
