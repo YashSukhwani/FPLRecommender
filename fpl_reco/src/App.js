@@ -1,19 +1,19 @@
-import logo from './logo.svg';
-import { render } from 'react-dom';
-import { Drawer } from '@material-ui/core';
-import ClippedDrawer from './Components/Nav/ClippedDrawer';
-
 import './App.css';
 import All from './Components/All';
+import Display from './Components/Display';
 
 function App() {
   const stylePage = {
-    margin: "100",
-    padding: "100"
+    margin: "10px",
+    padding: "10px"
   };
 
+
+
   return (
-    <All style={stylePage} />
+    <div style={stylePage}>
+      <All style={stylePage} />
+    </div>
   );
 
 }

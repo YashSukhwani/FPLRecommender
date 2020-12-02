@@ -1,12 +1,33 @@
 import '../App.css';
 import axios from 'axios';
-import React, { useRef, Component } from 'react'
+import React, { useRef, useState, useEffect, Component } from 'react'
 import { Button } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
+import Display from './Display';
 
 
 function All() {
+  const [arr, setArr] = useState([{
+    "name": "Martínez",
+    "points_per_game": 6.8,
+    "position": "GKP"
+},
+{
+    "name": "Kane",
+    "points_per_game": 10.8,
+    "position": "FWD"
+},
+{
+    "name": "Son",
+    "points_per_game": 11.5,
+    "position": "MID"
+},
+{
+    "name": "Ait Nouri",
+    "points_per_game": 15,
+    "position": "DEF"
+}]);
 
   const myStyle = {
     margin: "5px",
@@ -85,6 +106,7 @@ const theStyle = {
           }
         }).then((res) => {
           console.log(res);
+          window.alert('Player Inserted!')
         }).catch(function (error) {
           console.log(error);
       });
@@ -118,12 +140,16 @@ const theStyle = {
           }
         }).then((res) => {
           console.log(res);
-          
           console.log(res.data.Result);
+          setArr(res.data.Result);
+          
+          
         }).catch(function (error) {
           console.log(error);
       });
         }}>get Best</Button>
+
+<Display array={arr} />
 
 <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
@@ -153,6 +179,7 @@ const theStyle = {
           }
         }).then((res) => {
           console.log(res);
+          window.alert('Player Deleted!')
         }).catch(function (error) {
           console.log(error);
       });
@@ -171,6 +198,7 @@ const theStyle = {
           }
         }).then((res) => {
           console.log(res);
+          window.alert('Team Updated!')
         }).catch(function (error) {
           console.log(error);
       });
@@ -193,17 +221,19 @@ const theStyle = {
         console.log(valueRef1.current.value);
         axios({
           method: 'get',
-          url: '',
-          headers: {}, 
+          url: 'http://fplrecommender.web.illinois.edu/search',
+          headers: {},
+          // withCredentials: true,
+          // crossdomain: true,
           data: {
-             playerName: valueRef1.current.value, 
-             teamName: valueRef2.current.value,
-             stat1: valueRef3.current.value,
-             stat1Val: valueRef4.current.value,
-             stat2: valueRef5.current.value,
-             stat2Val: valueRef6.current.value,
-             stat3: valueRef7.current.value,
-             stat3Val: valueRef8.current.value
+             playerName: valueRef1.current.value
+            //  teamName: valueRef2.current.value,
+            //  stat1: valueRef3.current.value,
+            //  stat1Val: valueRef4.current.value,
+            //  stat2: valueRef5.current.value,
+            //  stat2Val: valueRef6.current.value,
+            //  stat3: valueRef7.current.value,
+            //  stat3Val: valueRef8.current.value
           }
         }).then((res) => {
           console.log(res);
