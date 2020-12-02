@@ -158,6 +158,16 @@ function App() {
       });
         }}>Update Team</Button>
 
+<Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+    axios({
+      method: 'get',
+      url: 'http://fplrecommender.web.illinois.edu/getRecs', // Edit this URL for Shrikar
+      headers: {}
+    }).catch(function (error) {
+      console.log(error);
+  });
+    }}>Get Recommendations</Button>
+
       <Button variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
