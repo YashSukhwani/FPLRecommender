@@ -224,10 +224,12 @@ const theStyle = {
 <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
     axios({
       method: 'get',
-      url: 'http://fplrecommender.web.illinois.edu/getRecs', // Edit this URL for Shrikar
+      url: 'http://fplrecommender.web.illinois.edu/getrecos', 
       headers: {}
     }).then((res) => {
       console.log(res);
+      setArr(res.data.Result);
+      setFull('Recos');
     }).catch(function (error) {
       console.log(error);
   });

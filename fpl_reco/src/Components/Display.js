@@ -65,7 +65,7 @@ function Display(props) {
             </table>
         </div>
         );
-    } else { // else if (props.full == 'Search')
+    } else if (props.full == 'Search') { 
         return (
             <div >
                 <table style={leStyle}>
@@ -82,6 +82,31 @@ function Display(props) {
                 </table>
             </div>
         );
+    } else {
+        return (            
+            <div >
+                <table style={leStyle}>
+                <thead>
+                    <th style={leStyle}>Player Name</th>
+                    <th style={leStyle}>Position</th>
+                    <th style={leStyle}>Team</th>
+                    <th style={leStyle}>Status</th>
+                    <th style={leStyle}>Cost</th>
+                    </thead>
+                    <tbody>
+                    {props.array.map(item => (
+                    <tr >
+                    <td style={leStyle}>{item.name}</td>
+                    <td style={leStyle}>{item.position}</td>
+                    <td style={leStyle}>{item.team}</td>
+                    <td style={leStyle}>{item.status}</td>
+                    <td style={leStyle}>{item.cost}</td>
+                    </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
+            );
     }
 
 }
