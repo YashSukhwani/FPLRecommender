@@ -124,7 +124,7 @@ def main():
     for i in scores_argsort:
     	retval += "{'name':'" + tuples[i][1] + " " + tuples[i][2] + "','position':'" + tuples[i][-4] + "','team':'" + tuples[i][-3] + "','status':'" + tuples[i][-2] + "','points per game':'" + tuples[i][-1] + "'},"
     retval = retval[:-1] + "]}"
-    print(retval)
+    print(retval[:-1])
 
 sys.path.insert(0, os.path.dirname(__file__))
 if __name__ == '__main__':
