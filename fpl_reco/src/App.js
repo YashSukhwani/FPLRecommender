@@ -8,8 +8,6 @@ function App() {
     padding: "10px"
   };
 
-
-
   return (
     <div style={stylePage}>
       <All style={stylePage} />

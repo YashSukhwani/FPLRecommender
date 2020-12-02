@@ -8,7 +8,8 @@ import Display from './Display';
 
 
 function All() {
-  const [arr, setArr] = useState([{
+
+  const placeholderData = [{
     "name": "Martínez",
     "points_per_game": 6.8,
     "position": "GKP"
@@ -27,12 +28,26 @@ function All() {
     "name": "Ait Nouri",
     "points_per_game": 15,
     "position": "DEF"
-}]);
+}];
+
+  const [arr, setArr] = useState([{}]);
+  const [full, setFull] = useState([{full: 'False'}]);
 
   const myStyle = {
     margin: "5px",
     padding: "5px"
 };
+
+const inStyle = {
+  fontFamily: 'Raleway',
+  fontWeight: '34pt',
+  padding: '4pt'
+}
+
+const beStyle = {
+  fontFamily: 'Mandrel',
+  padding: '2pt'
+}
 
 const textStyle = {
     color: "Brown",
@@ -40,7 +55,7 @@ const textStyle = {
 };
 
 const theStyle = {
-  marginTop: "30px"
+  marginTop: "15px"
 }
 
   const valueRef1 = useRef('');
@@ -73,21 +88,21 @@ const theStyle = {
     <Typography style={textStyle} variant="h1" component="h2">
       The FPL Recommender
     </Typography>
-    <Typography variant="h4" component="h5">
+    <Typography style={inStyle} variant="h4" component="h5">
       Usage rules
     </Typography>
     <div>
-    <Typography variant="h5" component="h6">
+    <Typography style={beStyle} variant="h5" component="h6">
       Team Name or Player Name to be used in Search and Delete. 
     </Typography>
     </div>
     <div>
-    <Typography variant="h5" component="h6">
+    <Typography style={beStyle} variant="h5" component="h6">
       Statistics and Player Name used in Insert and Update.
     </Typography>
     </div>
     <div>
-    <Typography variant="h5" component="h6">
+    <Typography style={beStyle} variant="h5" component="h6">
       Must provide at least one statistic in these two functions.
     </Typography>
     </div>
@@ -124,6 +139,8 @@ const theStyle = {
           }
         }).then((res) => {
           console.log(res);
+          setArr(res.data.Result);
+          setFull('True');
         }).catch(function (error) {
           console.log(error);
       });
@@ -142,14 +159,12 @@ const theStyle = {
           console.log(res);
           console.log(res.data.Result);
           setArr(res.data.Result);
-          
+          setFull('False');
           
         }).catch(function (error) {
           console.log(error);
       });
         }}>get Best</Button>
-
-<Display array={arr} />
 
 <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
@@ -162,6 +177,8 @@ const theStyle = {
           }
         }).then((res) => {
           console.log(res);
+          setArr(res.data.Result);
+          setFull('False');
         }).catch(function (error) {
           console.log(error);
       });
@@ -390,6 +407,12 @@ const theStyle = {
     }}>Submit Team</Button>
         </div>
     </form>
+
+    <Typography style={inStyle} variant="h1" component="h2">
+      View Results
+    </Typography>
+
+    <Display full={full} array={arr} />
 
     </div>
   </div>
