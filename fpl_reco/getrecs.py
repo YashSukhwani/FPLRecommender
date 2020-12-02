@@ -122,9 +122,9 @@ def main():
     scores_argsort = np.flip(np.argsort(pred_scores))
     retval = "{results:["
     for i in scores_argsort:
-    	retval += "{'name':'" + tuples[i][1] + " " + tuples[i][2] + "','position':'" + tuples[i][-4] + "','team':'" + tuples[i][-3] + "','status':'" + tuples[i][-2] + "','points per game':'" + tuples[i][-1] + "'},"
+    	retval += "{'name':'" + tuples[i][1] + " " + tuples[i][2] + "','position':'" + tuples[i][-4] + "','team':'" + tuples[i][-3] + "','status':'" + tuples[i][-2] + "','cost':" + tuples[i][-5] + "},"
     retval = retval[:-1] + "]}"
-    print(retval[:-1])
+    print(retval)
 
 sys.path.insert(0, os.path.dirname(__file__))
 if __name__ == '__main__':
