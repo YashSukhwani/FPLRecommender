@@ -120,11 +120,12 @@ def main():
 	rfregressor = RandomForest(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float), np.array([item[-1] for item in tuples]).astype(float), 15, 'sqrt', 592)
 	pred_scores = rfregressor.predict(np.array([item[3:18] for item in tuples]).astype(float))
 	scores_argsort = np.flip(np.argsort(pred_scores))
-	retvals = []
+	retval = ''
+    retval += '{results:['
 	for i in scores_argsort:
-		retvals += [[tuples[i][1] + ' ' + tuples[i][2], tuples[i][-4], tuples[i][-3], tuples[i][-2], tuples[i][-1]]]
-	retvals
-	
+		retval += '{"name":"' + tuples[i][1] + ' ' + tuples[i][2] + '","position":"' + tuples[i][-4] + '","team":"' + tuples[i][-3] + '","status":"' + tuples[i][-2] + '","points per game":"' + tuples[i][-1] + '"},'
+	retval = retval[:-1] + ']}'
+	print(retval)
 
 sys.path.insert(0, os.path.dirname(__file__))
 if __name__ == '__main__':
