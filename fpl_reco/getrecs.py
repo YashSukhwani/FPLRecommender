@@ -123,7 +123,7 @@ def main():
 	retvals = []
 	for i in scores_argsort:
 		retvals += [[tuples[i][1] + ' ' + tuples[i][2], tuples[i][-4], tuples[i][-3], tuples[i][-2], tuples[i][-1]]]
-	return retvals
+	print(retvals)
 	
 
 sys.path.insert(0, os.path.dirname(__file__))
