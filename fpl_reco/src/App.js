@@ -23,11 +23,19 @@ import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 function App() {
-  const useStyles = makeStyles((theme) => ({
-    margin: {
-      margin: theme.spacing(1),
-    },
-  }));
+  const myStyle = {
+    margin: "5px",
+    padding: "5px"
+};
+
+const textStyle = {
+    color: "Brown",
+    fontFamily: "Times New Roman"
+};
+
+const theStyle = {
+  marginTop: "30px"
+}
 
   const valueRef1 = useRef('');
   const valueRef2 = useRef('');
@@ -38,9 +46,25 @@ function App() {
   const valueRef7 = useRef('');  
   const valueRef8 = useRef('');
 
+  const player1 = useRef('');
+  const player2 = useRef('');
+  const player3 = useRef('');
+  const player4 = useRef('');
+  const player5 = useRef('');
+  const player6 = useRef('');
+  const player7 = useRef('');
+  const player8 = useRef('');
+  const player9 = useRef('');
+  const player10 = useRef('');
+  const player11 = useRef('');
+  const player12 = useRef('');
+  const player13 = useRef('');
+  const player14 = useRef('');
+  const player15 = useRef('');
+
   return (
   <div>
-    <Typography variant="h1" component="h2">
+    <Typography style={textStyle} variant="h1" component="h2">
       The FPL Recommender
     </Typography>
     <Typography variant="h4" component="h5">
@@ -62,7 +86,7 @@ function App() {
     </Typography>
     </div>
     <div>
-      <Button variant="contained" color="secondary" onClick={() => {
+      <Button style={myStyle} variant="contained" color="secondary" onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
@@ -73,19 +97,16 @@ function App() {
              playerName: valueRef1.current.value, 
              teamName: valueRef2.current.value,
              position: valueRef3.current.value,
-            //  stat1Val: valueRef4.current.value,
-            //  stat2: valueRef5.current.value,
-            //  stat2Val: valueRef6.current.value,
-            //  stat3: valueRef7.current.value,
-            //  stat3Val: valueRef8.current.value
           }
+        }).then((res) => {
+          console.log(res);
         }).catch(function (error) {
           console.log(error);
       });
         }}>
         Insert Player</Button>
 
-        <Button variant="contained" color="secondary"onClick={() => {
+        <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
@@ -94,12 +115,14 @@ function App() {
           headers: {}, 
           data: {
           }
+        }).then((res) => {
+          console.log(res);
         }).catch(function (error) {
           console.log(error);
       });
-        }}>FullTable</Button>
+        }}>Full Table</Button>
 
-<Button variant="contained" color="secondary"onClick={() => {
+<Button style={myStyle} variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
@@ -108,12 +131,14 @@ function App() {
           headers: {}, 
           data: {
           }
+        }).then((res) => {
+          console.log(res);
         }).catch(function (error) {
           console.log(error);
       });
-        }}>getBest</Button>
+        }}>get Best</Button>
 
-<Button variant="contained" color="secondary"onClick={() => {
+<Button style={myStyle} variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
@@ -122,12 +147,14 @@ function App() {
           headers: {}, 
           data: {
           }
+        }).then((res) => {
+          console.log(res);
         }).catch(function (error) {
           console.log(error);
       });
-        }}>getBetterthanAvg</Button>
+        }}>get Better than Avg</Button>
 
-      <Button variant="contained" color="secondary"onClick={() => {
+      <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
@@ -137,12 +164,14 @@ function App() {
           data: {
              playerName: valueRef1.current.value, 
           }
+        }).then((res) => {
+          console.log(res);
         }).catch(function (error) {
           console.log(error);
       });
         }}>Delete Player</Button>
 
-      <Button variant="contained" color="secondary"onClick={() => {
+      <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
@@ -153,6 +182,8 @@ function App() {
              playerName: valueRef1.current.value, 
              statValue: valueRef2.current.value,
           }
+        }).then((res) => {
+          console.log(res);
         }).catch(function (error) {
           console.log(error);
       });
@@ -163,12 +194,14 @@ function App() {
       method: 'get',
       url: 'http://fplrecommender.web.illinois.edu/getRecs', // Edit this URL for Shrikar
       headers: {}
+    }).then((res) => {
+      console.log(res);
     }).catch(function (error) {
       console.log(error);
   });
     }}>Get Recommendations</Button>
 
-      <Button variant="contained" color="secondary"onClick={() => {
+      <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
         console.log('Hi');
         console.log(valueRef1.current.value);
         axios({
@@ -185,6 +218,8 @@ function App() {
              stat3: valueRef7.current.value,
              stat3Val: valueRef8.current.value
           }
+        }).then((res) => {
+          console.log(res);
         }).catch(function (error) {
           console.log(error);
       });
@@ -194,24 +229,24 @@ function App() {
 
     <form noValidate autoComplete="off">
       <div>
-      <TextField
+      <TextField style={myStyle}
           id="player-name"
           label="Player Name"
           inputRef={valueRef1}
         />
-      <TextField
+      <TextField style={myStyle}
           id="player-team"
           label="Player Team"
           inputRef={valueRef2}
         />
-        <TextField
+        <TextField style={myStyle}
           id="position"
           label="Position"
           inputRef={valueRef3}
         />
       </div>
       <div>
-        <TextField
+        <TextField style={myStyle}
           id="stat-number"
           label="Number"
           type="number"
@@ -219,12 +254,12 @@ function App() {
         />
       </div>
       <div>
-      <TextField
+      <TextField style={myStyle}
           id="stat-name2"
           label="Statistic 2"
           inputRef={valueRef5}
         />
-        <TextField
+        <TextField style={myStyle}
           id="stat-number2"
           label="Number"
           type="number"
@@ -232,19 +267,111 @@ function App() {
         />
       </div>
       <div>
-      <TextField
+      <TextField style={myStyle}
           id="stat-name3"
           label="Statistic 3"
           inputRef={valueRef7}
         />
-        <TextField
+        <TextField style={myStyle}
           id="stat-number3"
           label="Number"
           type="number"
           inputRef={valueRef8}
         />
       </div>
-
+      <div>
+      <Typography style={textStyle} variant="h1" component="h2">
+      Enter Your Team Below
+    </Typography>
+      </div>
+        <div style={theStyle}>
+        <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player1}
+        />
+                <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player2}
+        />
+                <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player3}
+        />
+                <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player4}
+        />
+                <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player5}
+        />
+                <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player6}
+        />
+                <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player7}
+        />
+                <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player8}
+        />
+                <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player9}
+        />
+                <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player10}
+        />
+                        <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player11}
+        />
+                        <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player12}
+        />
+                        <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player13}
+        />
+                        <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player14}
+        />
+                        <TextField style={myStyle}
+          label="Player Name"
+          inputRef={player15}
+        />
+        <Button style={myStyle} variant="contained" color="secondary"onClick={() => {
+    axios({
+      method: 'post',
+      url: 'http://fplrecommender.web.illinois.edu/playerTeam', // Edit this URL for Shrikar
+      headers: {},
+      data: {
+        player1: player1.current.value,
+        player2: player2.current.value,
+        player3: player3.current.value,
+        player4: player4.current.value,
+        player5: player5.current.value,
+        player6: player6.current.value,
+        player7: player7.current.value,
+        player8: player8.current.value,
+        player9: player9.current.value,
+        player10: player10.current.value,
+        player11: player11.current.value,
+        player12: player12.current.value,
+        player13: player13.current.value,
+        player14: player14.current.value,
+        player15: player15.current.value,
+      }
+    }).catch(function (error) {
+      console.log(error);
+  });
+    }}>Submit Team</Button>
+        </div>
     </form>
 
     </div>
