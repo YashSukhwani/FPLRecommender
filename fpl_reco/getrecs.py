@@ -115,19 +115,25 @@ class DecisionTree():
         return t.predict_row(xi)
 
 def main():
-	connection = connectDB()
-	tuples = runCommand(connection)
-	rfregressor = RandomForest(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float), np.array([item[-1] for item in tuples]).astype(float), 15, 'sqrt', 592)
-	pred_scores = rfregressor.predict(np.array([item[3:18] for item in tuples]).astype(float))
-	scores_argsort = np.flip(np.argsort(pred_scores))
-	retval = ''
-    retval += '{results:['
-	for i in scores_argsort:
-		retval += '{"name":"' + tuples[i][1] + ' ' + tuples[i][2] + '","position":"' + tuples[i][-4] + '","team":"' + tuples[i][-3] + '","status":"' + tuples[i][-2] + '","points per game":"' + tuples[i][-1] + '"},'
-	retval = retval[:-1] + ']}'
-	print(retval)
+    connection = connectDB()
+    tuples = runCommand(connection)
+    rfregressor = RandomForest(pd.DataFrame(data=[item[3:18] for item in tuples], dtype=float), np.array([item[-1] for item in tuples]).astype(float), 15, 'sqrt', 592)
+    pred_scores = rfregressor.predict(np.array([item[3:18] for item in tuples]).astype(float))
+    scores_argsort = np.flip(np.argsort(pred_scores))
+    retval = '{results:['
+    for i in scores_argsort:
+    	retval += '{"name":"' + tuples[i][1] + ' ' + tuples[i][2] + '","position":"' + tuples[i][-4] + '","team":"' + tuples[i][-3] + '","status":"' + tuples[i][-2] + '","points per game":"' + tuples[i][-1] + '"},'
+    retval = retval[:-1] + ']}'
+    print(retval)
 
 sys.path.insert(0, os.path.dirname(__file__))
 if __name__ == '__main__':
 	main()
 
+'''
+	retval = '{results:['
+    for i in scores_argsort:
+		retval += '{"name":"' + tuples[i][1] + ' ' + tuples[i][2] + '","position":"' + tuples[i][-4] + '","team":"' + tuples[i][-3] + '","status":"' + tuples[i][-2] + '","points per game":"' + tuples[i][-1] + '"},'
+	retval = retval[:-1] + ']}'
+	print(retval)
+'''
