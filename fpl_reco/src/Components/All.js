@@ -1,9 +1,10 @@
+import '../App.css';
+import axios from 'axios';
+import React, { useRef, Component } from 'react'
 import { Button } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
-import axios from 'axios';
-import React, { useRef, Component } from 'react';
-import '../App.css';
+
 
 function All() {
 
@@ -85,6 +86,10 @@ function All() {
       headers: {}, 
       data: {
       }
+    }).then((res) => {
+      console.log(res);
+      
+      console.log(res.data.Result);
     }).catch(function (error) {
       console.log(error);
   });
