@@ -64,10 +64,6 @@ https://github.com/facebook/create-react-app
 
 **Material UI** : Refer to https://github.com/mui-org/material-ui to understand how to use Material UI
 
-### Application Demo
-
-https://www.loom.com/share/a70ce2c0a1184af68151311591c6e72e?sharedAppSource=personal_library
-
 ## API Reference
 
 ## POST REQUESTS
