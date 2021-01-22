@@ -1,5 +1,9 @@
 # FPLRecommender
 
+The Fantasy Premier League (FPL) Recommender is an application that predicts the highest scoring team (for the FPL game) of soccer players from the English Premier League for each week. Results and match data from each week are expected to be entered into the system at the end of each gameweek. The system uses a Random Forest model in the background to make its predictions.
+
+Furthermore, there is a feature for the user to input their current selection of players. The system can custom recommend them the changes they could make to their team to maximize their points as predicted by our model.
+
 ### Install Node JS
 Refer to https://nodejs.org/en/ to install nodejs
 
