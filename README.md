@@ -4,6 +4,8 @@ The Fantasy Premier League (FPL) Recommender is an application that predicts the
 
 Furthermore, there is a feature for the user to input their current selection of players. The system can custom recommend them the changes they could make to their team to maximize their points as predicted by our model.
 
+The application is built on React, Express, Node, MySQL and Neo4j.
+
 ### Install Node JS
 Refer to https://nodejs.org/en/ to install nodejs
 
