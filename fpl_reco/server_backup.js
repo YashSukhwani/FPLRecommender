@@ -18,9 +18,7 @@ app.use(express.json());
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "fplrecommender_commonUser",
-  password: "Australia101"
+// PRIVATE
 });
 
 con.connect(function(err) {
