@@ -15,10 +15,7 @@ app.use(express.json());
 // DB CONNECTION
 
 let connection = mysql.createConnection({
-  host: "localhost",
-  user: "fplrecommender_commonUser",
-  password: "Australia101",
-  database: 'fplrecommender_MainDataDB'
+// PRIVATE 
 });
 
 // API REQUESTS
